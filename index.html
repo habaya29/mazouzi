@@ -1,0 +1,165 @@
+<html>
+  <head>
+    <title>GOLD PRICES</title>
+    <meta charset="utf-8/">
+    
+    <meta name="keywords" content="mazouzi prices">
+    
+    <meta name="description" content="mazouzi prices">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="mazouzi">
+    <style>
+      body {
+        text-align: center;
+        font-family: "Helvetica Neue", sans-serif;
+        background-color: black;
+        color: skyblue;
+      }
+      input[type="text"]{
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        background-color: rgb(255, 255, 255);
+        color: black;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        background-color: rgb(135, 206, 235);
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>موقع سماتي لأسعار الذهب</h1>
+    <h3 style="color: white;">السعر الحقيقي للاونصة</h3>
+    <h3 id="goldPriceInOz" style="color: white;"></h3>
+    <button onclick="calculatePrice()">حساب</button>
+    <br><br>
+    <h3>22k per gram: <span id="goldPriceIn22k" style="color: white;"></span></h3>
+    <h3>21k per gram: <span id="goldPriceIn21k" style="color: white;"></span></h3>
+    <h3>18k per gram: <span id="goldPriceIn18k" style="color: white;"></span></h3>
+    <h3>14k per gram: <span id="goldPriceIn14k" style="color: white;"></span></h3>
+    <h3>9k per gram: <span id="goldPriceIn9k" style="color: white;"></span></h3>
+  
+    <script>
+      function calculatePrice() {
+    fetch("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=O6FYW8BYC94VQJIR")
+      .then(response => response.json())
+      .then(data => {
+        let goldPriceInOz = data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        document.getElementById("goldPriceInOz").innerHTML = goldPriceInOz + " USD";
+        let goldPriceInGrams = 212 * (goldPriceInOz / 31.1);
+        // 22k
+        let goldPriceIn22k = (goldPriceInGrams / 1.09);
+        // 21k
+        let goldPriceIn21k = (goldPriceInGrams / 1.14);
+        // 18k
+        let goldPriceIn18k = (goldPriceInGrams / 1.33);
+        // 14k
+        let goldPriceIn14k = (goldPriceInGrams / 1.71);
+        // 9k
+        let goldPriceIn9k = (goldPriceInGrams / 2.66 );
+
+        document.getElementById("goldPriceIn22k").innerHTML = goldPriceIn22k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn21k").innerHTML = goldPriceIn21k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn18k").innerHTML = goldPriceIn18k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn14k").innerHTML = goldPriceIn14k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn9k").innerHTML = goldPriceIn9k.toFixed(2) + " DA";
+      });
+  }
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+<!--
+<html>
+  <head>
+    <meta name="keywords" content="اسعارالذهب, سعر الذهب مقابل الدينار في الجزائري,سعر الذهب مباشرة, سعر الذهب في الجلفة">
+    <meta name="description" content="حساب سعر الذهب مقابل الدينار الجزائري, اسعار الذهب مقابل الدينار الجزائري مباشرة,سعر الذهب عند مزوزي">
+    <meta name="author" content="mazouzi">
+    <title>Gold Price Calculator</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: "Helvetica Neue", sans-serif;
+        background-color: black;
+        color: skyblue;
+      }
+      input[type="text"]{
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        background-color: rgb(255, 255, 255);
+        color: black;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        background-color: rgb(135, 206, 235);
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gold Price Calculator</h1>
+    <h3 style="color: white;">The current gold price in ounces:</h3>
+    <h3 id="goldPriceInOz" style="color: white;"></h3>
+    <button onclick="calculatePrice()">Calculate</button>
+    <br><br>
+    <h3>Gold Price in 22k per gram: <span id="goldPriceIn22k" style="color: white;"></span></h3>
+    <h3>Gold Price in 21k per gram: <span id="goldPriceIn21k" style="color: white;"></span></h3>
+    <h3>Gold Price in 18k per gram: <span id="goldPriceIn18k" style="color: white;"></span></h3>
+    <h3>Gold Price in 14k per gram: <span id="goldPriceIn14k" style="color: white;"></span></h3>
+    <h3>Gold Price in 9k per gram: <span id="goldPriceIn9k" style="color: white;"></span></h3>
+  
+    <script>
+      function calculatePrice() {
+    fetch("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=O6FYW8BYC94VQJIR")
+      .then(response => response.json())
+      .then(data => {
+        let goldPriceInOz = data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        document.getElementById("goldPriceInOz").innerHTML = goldPriceInOz + " USD";
+        let goldPriceInGrams = 202 * (goldPriceInOz / 31.1);
+        // 22k
+        let goldPriceIn22k = (goldPriceInGrams / 1.09);
+        // 21k
+        let goldPriceIn21k = (goldPriceInGrams / 1.14);
+        // 18k
+        let goldPriceIn18k = (goldPriceInGrams / 1.33);
+        // 14k
+        let goldPriceIn14k = (goldPriceInGrams / 1.71);
+        // 9k
+        let goldPriceIn9k = (goldPriceInGrams / 2.66 );
+
+        document.getElementById("goldPriceIn22k").innerHTML = goldPriceIn22k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn21k").innerHTML = goldPriceIn21k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn18k").innerHTML = goldPriceIn18k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn14k").innerHTML = goldPriceIn14k.toFixed(2) + " DA";
+        document.getElementById("goldPriceIn9k").innerHTML = goldPriceIn9k.toFixed(2) + " DA";
+      });
+  }
+    </script>
+  </body>
+</html>
+-->
